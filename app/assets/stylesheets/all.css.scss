@@ -1,0 +1,54 @@
+// 画面固定
+
+#header{
+  height: 50px;
+  background-color:#DEB887
+}
+
+#header a{
+  float: left;
+  text-decoration: none;
+  font-size: 27px;
+  line-height: 50px;
+  padding-left: 20px;
+}
+
+.header-list li{
+  float: left;
+  margin-left: 30px;
+}
+
+
+// ホーム
+.about{
+  margin: 0 auto;
+  height: 150px;
+  width: 1100px;
+  background-color: skyblue;
+   h1{
+     text-align: center;
+   }p{
+     text-align: center;
+   }
+ }
+
+// .which-box{
+//   margin: 0 auto;
+//   height: 200px;
+//   width: 50%;
+//   background-color: grey;
+// }
+//
+// .which{
+//   height: 90%;
+//   width: 50%;
+//   background-color: pink;
+//   float: left;
+//   margin: 0 auto;
+//   h3{
+//    font-size: 20px;
+//    text-align: center;
+//    }p{
+//    font-size:17px;
+//   }
+// }
