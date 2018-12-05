@@ -23,14 +23,21 @@
   font-size: 15px;
 }
 
-.flash {
-
+.message{
   padding: 10px 0;
-  color: white;
-  background: rgb(251, 170, 88);
   text-align: center;
   border-radius: 0 0 2px 2px;
   font-size: 14px;
+}
+
+.notice {
+  background: skyblue;
+  color: white;
+}
+
+.danger{
+  background: pink;
+  color: red;
 }
 
 #error_explanation {

@@ -16,14 +16,24 @@
       <ul class="header-list">
         <li>新着</li>
         <li>人気</li>
-        <li><%= link_to "新規登録", signup_path%></li>
-        <li>ログイン</li>
+        <% if logged_in? %>
+          <li><%= link_to "マイページ", current_user %></li>
+          <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "新規登録", signup_path%></li>
+          <li><%= link_to "ログイン", login_path%></li>
+        <% end %>
       </ul>
     </div>
 
     <% if flash[:notice] %>
-      <div class="flash">
+      <div class="message notice">
         <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:danger] %>
+      <div class="message danger">
+        <%= flash[:danger] %>
       </div>
     <% end %>
 
