@@ -11,14 +11,22 @@
 
   <body>
     <div id="header">
-      <a href="#">『 談話室 』</a>
+      <!-- <a  class="logo" href="#">『 談話室 』</a> -->
+      <%= link_to "『 談話室 』", root_path, class: "logo"%>
       <ul class="header-list">
         <li>新着</li>
         <li>人気</li>
-        <li>新規登録</li>
+        <li><%= link_to "新規登録", signup_path%></li>
         <li>ログイン</li>
       </ul>
     </div>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
