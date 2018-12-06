@@ -1,17 +1,21 @@
+<h1 class="login">ログイン</h1>
+<div class="form loginsize" style="text-align:center;">
 <%= form_for(:session, url: login_path) do |f| %>
 
-  <%= f.label :email %>
+  <%= f.label :email, "メールアドレス" %>
   <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :password %>
+  <%= f.label :password, "パスワード" %>
   <%= f.password_field :password, class: 'form-control' %>
 
   <%= f.label :remember_me, class: "checkbox inline" do %>
     <%= f.check_box :remember_me %>
-    <span>Remember me on this computer</span>
+    <span>次回から自動でログインする</span>
   <% end %>
 
-  <%= f.submit "Log in", class: "btn btn-primary" %>
+  <div class="submit">
+    <%= f.submit "ログイン", class: "btn btn-primary" %>
+  </div>
   <% end %>
-
-<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  <p>初めての方 <%= link_to "新機登録はこちら!", signup_path %></p>
+</div>

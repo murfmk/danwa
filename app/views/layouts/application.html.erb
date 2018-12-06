@@ -17,11 +17,11 @@
         <li>新着</li>
         <li>人気</li>
         <% if logged_in? %>
-          <li><%= link_to "マイページ", current_user %></li>
-          <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+          <li><%= link_to "マイページ", current_user, :style=>"color:black;" %></li>
+          <li><%= link_to "ログアウト", logout_path, method: :delete, :style=>"color:black;" %></li>
         <% else %>
-          <li><%= link_to "新規登録", signup_path%></li>
-          <li><%= link_to "ログイン", login_path%></li>
+          <li><%= link_to "新規登録", signup_path, :style=>"color:black;"%></li>
+          <li><%= link_to "ログイン", login_path, :style=>"color:black;"%></li>
         <% end %>
       </ul>
     </div>

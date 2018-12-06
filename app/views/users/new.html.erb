@@ -1,20 +1,33 @@
-<h1>新規登録</h1>
+<h1 class="signup">新規登録</h1>
 
-<%= form_for(@user, url: signup_path) do |f| %>
-  <%= render 'shared/error_messages' %>
+<div class="signup-can">
+  <div class="signup-can-be">
+    <h2>アカウント登録するとできる事</h3>
+    <p>・テーマを決める</p>
+    <p>・テーマ毎にコメント</p>
+    <p>・いいね！をつける</p>
+  </div>
+</div>
 
-  <%= f.label :name, "ユーザー名" %>
-  <%= f.text_field :name, class: 'form-control' %>
+<div class="form signupsize" style="text-align:center;">
+  <%= form_for(@user, url: signup_path) do |f| %>
+    <%= render 'shared/error_messages' %>
 
-  <%= f.label :email, "メールアドレス" %>
-  <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :password, "パスワード" %>
-  <%= f.password_field :password, class: 'form-control' %>
+    <%= f.label :name, "ユーザー名" %>
+    <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :password_confirmation, "パスワードの確認" %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.submit "アカウントを登録する" %>
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password, class: 'form-control' %>
 
-<% end %>
+    <%= f.label :password_confirmation, "パスワードの確認" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+    <div class="submit">
+      <%= f.submit "アカウントを登録する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
