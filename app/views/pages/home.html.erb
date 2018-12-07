@@ -3,3 +3,17 @@
   <p>話したいテーマをあげてもらい、ゆる〜くお話ししよう。</p>
   <p>※誹謗中傷はしないでください。</p>
 </div>
+
+<% @microposts.each do |micropost| %>
+    <%= micropost.user.name %>
+
+    <%= micropost.content %>
+
+    <%= micropost.created_at %>
+
+    <% if micropost.user == current_user %>
+       <%= link_to "削除", micropost_path(micropost.id), method: :delete,
+                 data: { confirm: "本当に削除しますか?" } %>
+    <% end %>
+    <hr />
+<% end %>

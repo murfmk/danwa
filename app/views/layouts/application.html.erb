@@ -11,12 +11,12 @@
 
   <body>
     <div id="header">
-      <!-- <a  class="logo" href="#">『 談話室 』</a> -->
       <%= link_to "『 談話室 』", root_path, class: "logo"%>
       <ul class="header-list">
         <li>新着</li>
         <li>人気</li>
         <% if logged_in? %>
+          <li><%= link_to "テーマを書く", new_micropost_path, :style=>"color:black;" %></li>
           <li><%= link_to "マイページ", current_user, :style=>"color:black;" %></li>
           <li><%= link_to "ログアウト", logout_path, method: :delete, :style=>"color:black;" %></li>
         <% else %>
