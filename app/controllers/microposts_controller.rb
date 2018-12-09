@@ -27,6 +27,12 @@ class MicropostsController < ApplicationController
     redirect_to root_url
   end
 
+  def rank
+      microposts_rank = Micropost.find(Comment.sort_by_comment_count)
+      microposts = Micropost.where(id: Micropost.all.map{|m| m.id if m.comments.empty?})
+
+      @microposts = microposts_rank + microposts
+  end
 
   private
 
