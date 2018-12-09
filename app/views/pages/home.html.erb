@@ -4,22 +4,20 @@
   <p>※誹謗中傷はしないでください。</p>
 </div>
 
-<% @microposts.each do |micropost| %>
+<% if logged_in? %>
+  <% @microposts.each do |micropost| %>
     <%= micropost.user.name %>
 
-    <%= micropost.content %>
+    <%= link_to micropost.content,"/microposts/#{micropost.id}" %>
 
     <%= micropost.created_at %>
+
+    <span><%= "コメント(#{micropost.comments.count})"%></span>
 
     <% if micropost.user == current_user %>
        <%= link_to "削除", micropost_path(micropost.id), method: :delete,
                  data: { confirm: "本当に削除しますか?" } %>
     <% end %>
-    <%= @comments %>
-    <%= form_for [@post, @comment] do |f| %>
-    <%= f.text_area :content, placeholder: "コメントを入力して下さい" %>
-    <br>
-    <%= f.submit 'コメントする' %>
-    <% end %>
     <hr />
+  <% end %>
 <% end %>

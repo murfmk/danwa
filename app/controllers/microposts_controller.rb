@@ -6,13 +6,19 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.new
   end
 
+  def show
+    @micropost = Micropost.find(params[:id])
+    @comment = Comment.new
+    @user = User.find_by(id: @micropost.user_id)
+  end
+
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:notice] = "テーマを投稿しました!"
       redirect_to root_url
     else
-      render 'pages/home'
+      render 'new'
     end
   end
 
