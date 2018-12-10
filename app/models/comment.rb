@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :micropost
+  mount_uploader :picture, PictureUploader
   validates :body , presence: true, length: { maximum: 255 }
   validates :user_id , presence: true
 
