@@ -10,6 +10,9 @@
   <%= f.label :introduction %>
   <%= f.text_area :introduction, class: 'form-control' %>
 
+  <%= f.file_field :image_name %>
+  <!-- <%= f.check_box :remove_image_name, label: 'プロフィール画像を削除' %> -->
+
   <%= f.label :password %>
   <%= f.password_field :password, class: 'form-control' %>
 
