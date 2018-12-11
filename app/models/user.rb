@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :comments
   mount_uploader :image_name, ImageUploader
+  acts_as_follower
+  acts_as_followable
   attr_accessor :remember_token
   before_save { email.downcase! }
   validates :name, presence: true, length: { maximum: 50 }

@@ -3,6 +3,25 @@
 </div>
   <p class="myname"><%= @user.name %></p>
   <p class="myname"><%= @user.introduction %></p>
+  <p>フォロー数　　<%= @user.follow_count %></p>
+
+  <p>フォロワー数　<%= @user.followers_count %></p>
+
+
+  <% if logged_in? %>
+    <% unless current_user == @user %>
+      <% if current_user.following? @user %>
+          フォローしています。(<%= link_to 'フォローを解除する', unfollow_path(@user), method: :delete %>)
+      <% else %>
+          <%= link_to 'フォローする', follow_path(@user), method: :post %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= link_to "follow(#{@user.follow_count})",
+      follow_list_path(@user) %>
+  <%= link_to "follower(#{@user.followers_count})",
+      follower_list_path(@user) %>
+
 <% if current_user?(@user) %>
   <%= link_to "プロフィールの編集", edit_user_path(current_user) %>
   <%= link_to "アカウント削除", @user, method: :delete,

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy, :follow, :unfollow]
   before_action :correct_user,   only: [:edit, :update, :destroy]
   def new
     @user = User.new
@@ -38,6 +38,30 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:notice] = "アカウントを削除しました。"
     redirect_to root_url
+  end
+
+  def follow
+    @user = User.find(params[:id])
+    #ログイン中のユーザーで対象のユーザー(@user)をフォローする
+    current_user.follow(@user)
+    redirect_to user_url(@user)
+  end
+
+  def unfollow
+    @user = User.find(params[:id])
+    #ログイン中のユーザーで対象のユーザー(@user)をフォロー解除する
+    current_user.stop_following(@user)
+    redirect_to user_url(@user)
+  end
+
+  def follow_list
+    @user = User.find(params[:id])
+    @users = @user.all_following
+  end
+
+  def follower_list
+    @user = User.find(params[:id])
+    @users = @user.followers
   end
 
   private

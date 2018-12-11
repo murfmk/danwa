@@ -1,0 +1,9 @@
+<%= @user.name %>さんのフォローリスト
+
+<div id="follow_list">
+  <ul>
+    <% @users.each do |user| %>
+      <li><%= link_to user.name, user_path(user) %></li>
+    <% end %>
+  </ul>
+</div>
