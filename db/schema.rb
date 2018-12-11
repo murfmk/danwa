@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_012042) do
+ActiveRecord::Schema.define(version: 2018_12_11_012832) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 2018_12_11_012042) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "tweet_id"
+    t.integer "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tweet_id"], name: "index_likes_on_tweet_id"
+    t.index ["comment_id"], name: "index_likes_on_comment_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2018_12_11_012042) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "picture"
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
