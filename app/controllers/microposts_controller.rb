@@ -27,10 +27,13 @@ class MicropostsController < ApplicationController
     redirect_to root_url
   end
 
+  def anew
+    @microposts = Micropost.all.order(created_at: :desc)
+  end
+
   def rank
       microposts_rank = Micropost.find(Comment.sort_by_comment_count)
-      microposts = Micropost.where(id: Micropost.all.map{|m| m.id if m.comments.empty?})
-
+      microposts = Micropost.where(id: Micropost.all.map{|m| m.id if m.comments.empty?}).order(created_at: :desc)
       @microposts = microposts_rank + microposts
   end
 

@@ -2,16 +2,18 @@
 <h3><%= @micropost.user.name %></h3>
 <h3><%= @micropost.content %></h3>
 
-<div class="comment-form">
-  <%= form_for([@micropost , @comment]) do |f| %>
-    <div class="field">
-      <%= f.text_area :body, placeholder: "Send comment..." %>
-    </div>
-    <%= f.submit "Post", class: "btn btn-primary" %>
-    <span class="picture">
-      <!-- <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %> -->
+<% if logged_in? %>
+  <div class="comment-form">
+    <%= form_for([@micropost , @comment]) do |f| %>
+      <div class="field">
+        <%= f.text_area :body, placeholder: "Send comment..." %>
+      </div>
+      <%= f.submit "Post", class: "btn btn-primary" %>
+      <span class="picture">
+        <!-- <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %> -->
       <%= f.file_field :picture %>
-    </span>
+      </span>
+    <% end %>
   <% end %>
 
   <!-- <script type="text/javascript">

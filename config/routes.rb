@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get '/microposts/rank', to: 'microposts#rank'
+  get '/microposts/anew', to: 'microposts#anew'
   resources :users
   resources :microposts , only: [:new, :show, :create , :destroy ] do
         resources :comments
