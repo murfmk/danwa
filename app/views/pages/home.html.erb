@@ -4,6 +4,7 @@
   <p>※誹謗中傷はしないでください。</p>
 </div>
 
+<div class="anew">
   <p>新着5件</p>
   <p>＿＿＿＿＿＿＿＿_______________________________________________</p>
   <% @microposts_new.first(3).each do |micropost| %>
@@ -21,7 +22,8 @@
     <% end %>
     <hr />
   <% end %>
-
+</div>
+<div class="ranking">
   <p>ランキング上位5件</p>
   <p>＿＿＿＿＿＿＿＿_______________________________________________</p>
   <% @microposts_rank.first(3).each do |micropost| %>
@@ -39,3 +41,4 @@
     <% end %>
     <hr />
   <% end %>
+</div>

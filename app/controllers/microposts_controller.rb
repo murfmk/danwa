@@ -28,13 +28,13 @@ class MicropostsController < ApplicationController
   end
 
   def anew
-    @microposts = Micropost.all.order(created_at: :desc)
+    @microposts = Micropost.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def rank
-      microposts_rank = Micropost.find(Comment.sort_by_comment_count)
-      microposts = Micropost.where(id: Micropost.all.map{|m| m.id if m.comments.empty?}).order(created_at: :desc)
-      @microposts = microposts_rank + microposts
+    microposts_rank = Micropost.find(Comment.sort_by_comment_count)
+    microposts = Micropost.where(id: Micropost.all.map{|m| m.id if m.comments.empty?}).order(created_at: :desc).page(params[:page]).per(10)
+    @microposts = microposts_rank + microposts
   end
 
   private

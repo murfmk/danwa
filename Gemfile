@@ -7,6 +7,7 @@ gem 'carrierwave'
 gem 'bcrypt'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'kaminari'
 gem "acts_as_follower",
     github: "tcocca/acts_as_follower",
     branch: "master"
