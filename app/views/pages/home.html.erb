@@ -4,41 +4,82 @@
   <p>※誹謗中傷はしないでください。</p>
 </div>
 
-<div class="anew">
-  <p>新着5件</p>
-  <p>＿＿＿＿＿＿＿＿_______________________________________________</p>
+<div class="new-rank-box">
+<ul class="new-rank">
+  <li class="new">新着</li>
+  <li class="rank">人気</li>
+</ul>
+
+<div class="new-rank-which newlist">
+  <p class="number">新着3件</p>
   <% @microposts_new.first(3).each do |micropost| %>
-    <%= micropost.user.name %>
+    <div class="block">
 
-    <%= link_to micropost.content,"/microposts/#{micropost.id}" %>
+      <div class="form-range">
+        <%= image_tag micropost.user.image_name.url, :class => "image" %>
+      </div>
+      <div class="form-range-2">
+      <p class="name"><%= link_to "#{micropost.user.name}".truncate(15), micropost.user, :class => "name"%></p>
 
-    <%= micropost.created_at %>
+      <p class="time"><%= simple_time(micropost.created_at) %></p>
 
-    <span><%= "コメント(#{micropost.comments.count})"%></span>
+      <p class="micropost"><%= link_to micropost.content.truncate(30),"/microposts/#{micropost.id}", :class => "micropost" %></p>
 
-    <% if micropost.user == current_user %>
-       <%= link_to "削除", micropost_path(micropost.id), method: :delete,
+      <span class="comment"><%= "コメント(#{micropost.comments.count})"%></span>
+
+      <% if micropost.user == current_user %>
+        <%= link_to "削除", micropost_path(micropost.id), method: :delete,
                  data: { confirm: "本当に削除しますか?" } %>
-    <% end %>
-    <hr />
+      <% end %>
+      </div>
+      <hr />
+    </div>
   <% end %>
 </div>
-<div class="ranking">
-  <p>ランキング上位5件</p>
-  <p>＿＿＿＿＿＿＿＿_______________________________________________</p>
+<div class="new-rank-which ranklist">
+  <p class="number">ランキング上位3件</p>
   <% @microposts_rank.first(3).each do |micropost| %>
-    <%= micropost.user.name %>
+  <div class="block">
 
-    <%= link_to micropost.content,"/microposts/#{micropost.id}" %>
+    <div class="form-range">
+      <%= image_tag micropost.user.image_name.url, :class => "image" %>
+    </div>
+    <div class="form-range-2">
+    <p class="name"><%= link_to "#{micropost.user.name}".truncate(15), micropost.user, :class => "name"%></p>
 
-    <%= micropost.created_at %>
+    <p class="time"><%= simple_time(micropost.created_at) %></p>
 
-    <span><%= "コメント(#{micropost.comments.count})"%></span>
+    <p class="micropost"><%= link_to micropost.content.truncate(30),"/microposts/#{micropost.id}", :class => "micropost" %></p>
+
+    <span class="comment"><%= "コメント(#{micropost.comments.count})"%></span>
 
     <% if micropost.user == current_user %>
-       <%= link_to "削除", micropost_path(micropost.id), method: :delete,
-                 data: { confirm: "本当に削除しますか?" } %>
+      <%= link_to "削除", micropost_path(micropost.id), method: :delete,
+               data: { confirm: "本当に削除しますか?" } %>
     <% end %>
-    <hr />
+    </div>
+      <hr />
+    </div>
   <% end %>
 </div>
+</div>
+
+<script>
+  $(function() {
+    $('.newlist').show();
+    $('.new').css('border-bottom', 'solid black');
+    // 「#hide-text」要素に対するclickイベントを作成してください
+    $('.new').click(function() {
+      $('.ranklist').hide();
+      $('.newlist').show();
+      $('.new').css('border-bottom', 'solid black');
+      $('.rank').css('border-bottom', '');
+    });
+    $('.rank').click(function() {
+      $('.newlist').hide();
+      $('.ranklist').show();
+      $('.new').css('border-bottom', '');
+      $('.rank').css('border-bottom', 'solid black');
+    });
+  });
+</script>

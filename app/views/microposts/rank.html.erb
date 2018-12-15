@@ -1,18 +1,16 @@
-<h1>ランキング</h1>
+<h1 class="top">テーマ一覧 (人気順※コメント数が多い順)</h1>
 
 
-  <% @microposts.each do |micropost| %>
-    <%= micropost.user.name %>
+<% @microposts.each do |micropost| %>
+ <%= link_to "#{micropost.user.name}", micropost.user  %>
+ <%= link_to micropost.content,"/microposts/#{micropost.id}" %>
+ <%= simple_time(micropost.created_at) %>
+ <span><%= "コメント(#{micropost.comments.count})"%></span>
+ <% if micropost.user == current_user %>
+    <%= link_to "削除", micropost_path(micropost.id), method: :delete,
+              data: { confirm: "本当に削除しますか?" } %>
+ <% end %>
+ <hr />
+<% end %>
 
-    <%= link_to micropost.content,"/microposts/#{micropost.id}" %>
-
-    <%= micropost.created_at %>
-
-    <span><%= "コメント(#{micropost.comments.count})"%></span>
-
-    <% if micropost.user == current_user %>
-       <%= link_to "削除", micropost_path(micropost.id), method: :delete,
-                 data: { confirm: "本当に削除しますか?" } %>
-    <% end %>
-    <hr />
-  <% end %>
+<%= paginate @microposts %>

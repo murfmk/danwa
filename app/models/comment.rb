@@ -6,6 +6,6 @@ class Comment < ApplicationRecord
   validates :user_id , presence: true
 
   def self.sort_by_comment_count
-    group(:micropost_id).order('count(micropost_id) desc').limit(5).pluck(:micropost_id)
+    group(:micropost_id).order('count(micropost_id) desc').pluck(:micropost_id)
   end
 end

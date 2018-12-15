@@ -1,15 +1,29 @@
-<h1>新着</h1>
+<h1 class="top">テーマ一覧 (新着順)</h1>
 
+<div class="continer">
+  <p class="number">新着順に並べ替え</p>
 <% @microposts.each do |micropost| %>
- <%= micropost.user.name %>
- <%= link_to micropost.content,"/microposts/#{micropost.id}" %>
- <%= micropost.created_at %>
- <span><%= "コメント(#{micropost.comments.count})"%></span>
- <% if micropost.user == current_user %>
-    <%= link_to "削除", micropost_path(micropost.id), method: :delete,
-              data: { confirm: "本当に削除しますか?" } %>
- <% end %>
- <hr />
-<% end %>
+<div class="block">
 
+  <div class="form-range">
+    <%= image_tag micropost.user.image_name.url, :class => "image" %>
+  </div>
+  <div class="form-range-2">
+  <p class="name"><%= link_to "#{micropost.user.name}".truncate(15), micropost.user, :class => "name"%></p>
+
+  <p class="time"><%= simple_time(micropost.created_at) %></p>
+
+  <p class="micropost"><%= link_to micropost.content.truncate(30),"/microposts/#{micropost.id}", :class => "micropost" %></p>
+
+  <span class="comment"><%= "コメント(#{micropost.comments.count})"%></span>
+
+  <% if micropost.user == current_user %>
+    <%= link_to "削除", micropost_path(micropost.id), method: :delete,
+             data: { confirm: "本当に削除しますか?" } %>
+  <% end %>
+  </div>
+    <hr />
+  </div>
+<% end %>
+</div>
 <%= paginate @microposts %>
