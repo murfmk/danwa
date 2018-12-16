@@ -96,6 +96,7 @@ hr:last-child{
   margin: 0 auto 20px auto;
 }
 
+
 .field_with_errors {
   @extend .has-error;
   .form-control {
@@ -117,6 +118,11 @@ hr:last-child{
   height: 100%;
 }
 
+.btn-theme{
+  width: 50%;
+  height: 100%;
+}
+
 .submit{
   margin: 0 auto 15px auto;
   height: 35px;
@@ -126,6 +132,14 @@ hr:last-child{
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+.post-form{
+  height: 60px;
+  width: 100%;
+  margin: 30px auto 20px auto;
+  border-radius: 8px;
+  text-align: center;
 }
 
 // ホーム
@@ -185,7 +199,10 @@ hr:last-child{
     height: 100px;
     width: 100%;
     border-top: solid 1px black;
+    background-color: white;
+    border-radius: 0 0 8px 8px;
   }
+
   .form-range{
     float: left;
     width: 12%;
@@ -224,17 +241,18 @@ hr:last-child{
   text-align: center;
   font-size: 25px;
   font-weight: bold;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 
 .continer{
-  height: 1070px;
+  height: auto;
   width: 60%;
   background-color: white;
   border-radius: 8px;
   border: solid 1px #FFEFD5;
   margin: 0 auto;
 }
+
 
 //新規登録
 .signup{
@@ -288,9 +306,57 @@ hr:last-child{
    height: 300px;
  }
 
+ //テーマを書く
+ .theme{
+   width: 30%;
+   margin: 0 auto;
+ }
+
  //マイページ
 .user-image{
   height: 150px;
   width: 150px;
+  margin: 40px auto 0;
+}
+
+.user-image-position{
   border-radius: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+.user-name{
+  margin: 30px auto;
+  text-align: center;
+  font-size: 45px;
+}
+
+
+.follow{
+  height: 50px;
+  width: 130px;
+  background-color: skyblue;
+  margin: 20px auto;
+  text-align: center;
+  border-radius: 30px;
+}
+
+.follow-t{
+  color: white;
+  line-height: 50px;
+}
+
+.followlist{
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 50px;
+  width: 360px;
+  font-size: 25px;
+  border-right: 3px solid #aaa;
+  border-left: 3px solid #aaa;
+  line-height: 50px;
+}
+
+.follower{
+  float: right;
 }

@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   </head>
 
   <body>
@@ -16,7 +17,7 @@
         <li><%= link_to "新着", "/microposts/anew", :style=>"color:black;" %></li>
         <li><%= link_to "人気", "/microposts/rank", :style=>"color:black;" %></li>
         <% if logged_in? %>
-          <li><%= link_to "テーマを書く", new_micropost_path, :style=>"color:black;" %></li>
+          <li><%= link_to "テーマを作る", new_micropost_path, :style=>"color:black;" %></li>
           <li><%= link_to "マイページ", current_user, :style=>"color:black;" %></li>
           <li><%= link_to "ログアウト", logout_path, method: :delete, :style=>"color:black;" %></li>
         <% else %>

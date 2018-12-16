@@ -1,26 +1,26 @@
 <div class="user-image">
-  <%= image_tag @user.image_name.url, :class => "user-image" %>
+  <%= image_tag @user.image_name.url, :class => "user-image-position" %>
 </div>
-  <p class="myname"><%= @user.name %></p>
+  <i class="fas fa-cog"></i>
   <p class="myname"><%= @user.introduction %></p>
-  <p>フォロー数　　<%= @user.follow_count %></p>
-
-  <p>フォロワー数　<%= @user.followers_count %></p>
 
 
   <% if logged_in? %>
     <% unless current_user == @user %>
+      <div class="follow">
       <% if current_user.following? @user %>
-          フォローしています。(<%= link_to 'フォローを解除する', unfollow_path(@user), method: :delete %>)
+        <p><%= link_to 'フォロー中', unfollow_path(@user), method: :delete, :class => "follow-t" %></p>
       <% else %>
-          <%= link_to 'フォローする', follow_path(@user), method: :post %>
+        <p><%= link_to 'フォローする', follow_path(@user), method: :post, :class => "follow-t" %></p>
       <% end %>
+      </div>
     <% end %>
   <% end %>
-  <%= link_to "follow(#{@user.follow_count})",
-      follow_list_path(@user) %>
-  <%= link_to "follower(#{@user.followers_count})",
-      follower_list_path(@user) %>
+
+  <div class="followlist">
+    <%= link_to "フォロー(#{@user.follow_count})",follow_list_path(@user), :class => "following" %>
+    <%= link_to "フォロワー(#{@user.followers_count})",follower_list_path(@user), :class => "follower" %>
+  </div>
 
 <% if current_user?(@user) %>
   <%= link_to "プロフィールの編集", edit_user_path(current_user) %>

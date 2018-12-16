@@ -33,9 +33,9 @@ class MicropostsController < ApplicationController
 
   def rank
     microposts_rank = Micropost.find(Comment.sort_by_comment_count)
-    microposts = Micropost.where(id: Micropost.all.map{|m| m.id if m.comments.empty?}).order(created_at: :desc)
-    microposts_array = microposts_rank + microposts
-    @microposts = Micropost.where(id: microposts_array.map(&:id)).page(params[:page]).per(10)
+    microposts_zero = Micropost.where(id: Micropost.all.map{|m| m.id if m.comments.empty?}).order(created_at: :desc)
+    microposts = microposts_rank + microposts_zero
+    @microposts = Kaminari.paginate_array(microposts).page(params[:page]).per(10)
   end
 
   private
