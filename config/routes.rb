@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get  '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
+  get '/option', to: 'users#option'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
@@ -10,6 +11,9 @@ Rails.application.routes.draw do
   resources :users
   resources :microposts , only: [:new, :show, :create , :destroy ] do
         resources :comments
+  end
+  resources :comments do
+    resources :likes, only: [:create, :destroy]
   end
 
   # ここからフォロー

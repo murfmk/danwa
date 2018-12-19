@@ -16,7 +16,9 @@
     <div class="block">
 
       <div class="form-range">
-        <%= image_tag micropost.user.image_name.url, :class => "image" %>
+        <%= link_to micropost.user do %>
+          <%= image_tag micropost.user.image_name.url, :class => "image" %>
+        <% end %>
       </div>
       <div class="form-range-2">
       <p class="name"><%= link_to "#{micropost.user.name}".truncate(15), micropost.user, :class => "name"%></p>
@@ -42,7 +44,9 @@
   <div class="block">
 
     <div class="form-range">
-      <%= image_tag micropost.user.image_name.url, :class => "image" %>
+      <%= link_to micropost.user do %>
+        <%= image_tag micropost.user.image_name.url, :class => "image" %>
+      <% end %>
     </div>
     <div class="form-range-2">
     <p class="name"><%= link_to "#{micropost.user.name}".truncate(15), micropost.user, :class => "name"%></p>
@@ -68,6 +72,8 @@
   $(function() {
     $('.newlist').show();
     $('.new').css('border-bottom', 'solid black');
+    $('.ranklist').hide();
+    $('.rank').css('border-bottom', '');
     // 「#hide-text」要素に対するclickイベントを作成してください
     $('.new').click(function() {
       $('.ranklist').hide();

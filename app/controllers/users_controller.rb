@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy, :follow, :unfollow]
+  before_action :logged_in_user, only: [:edit, :option, :update, :destroy, :follow, :unfollow]
   before_action :correct_user,   only: [:edit, :update, :destroy]
   def new
     @user = User.new
@@ -18,6 +18,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts
+    @comments = @user.comments
+    @likes = Like.where(user_id: @user.id)
+  end
+
+  def option
   end
 
   def edit

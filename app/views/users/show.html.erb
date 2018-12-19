@@ -1,10 +1,16 @@
 <div class="user-image">
   <%= image_tag @user.image_name.url, :class => "user-image-position" %>
 </div>
-  <i class="fas fa-cog"></i>
-  <p class="myname"><%= @user.introduction %></p>
-
-
+  <p class="user-name">
+    <%= @user.name %>
+    <% if current_user?(@user) %>
+    <span>
+      <%= link_to option_path do %>
+        <%= fa_icon 'cog', class: "cog" %>
+      <% end %>
+    <% end %>
+    </span>
+  </p>
   <% if logged_in? %>
     <% unless current_user == @user %>
       <div class="follow">
@@ -18,12 +24,134 @@
   <% end %>
 
   <div class="followlist">
-    <%= link_to "フォロー(#{@user.follow_count})",follow_list_path(@user), :class => "following" %>
-    <%= link_to "フォロワー(#{@user.followers_count})",follower_list_path(@user), :class => "follower" %>
+    <%= link_to "#{@user.follow_count} フォロー",follow_list_path(@user), :class => "following" %>
+    <%= link_to "#{@user.followers_count} フォロワー",follower_list_path(@user), :class => "follower" %>
+  </div>
+  <div class="introduction-box">
+    <p class="introduction"><%= @user.introduction %></p>
   </div>
 
-<% if current_user?(@user) %>
-  <%= link_to "プロフィールの編集", edit_user_path(current_user) %>
-  <%= link_to "アカウント削除", @user, method: :delete,
-                                  data: { confirm: "本当に削除しますか？" } %>
-<% end %>
+  <div class="user-set">
+    <div class="user-set-box">
+      <ul class="user-set-list">
+        <li class="themes">テーマ</li>
+        <li class="comments">コメント</li>
+        <li class="likes">いいね</li>
+      </ul>
+    </div>
+
+  <div class="themes-box">
+    <% @microposts.each do |micropost| %>
+      <div class="block">
+        <div class="form-range">
+          <%= link_to micropost.user do %>
+            <%= image_tag micropost.user.image_name.url, :class => "image" %>
+          <% end %>
+        </div>
+        <div class="form-range-2">
+        <p class="name"><%= link_to "#{micropost.user.name}".truncate(15), micropost.user, :class => "name"%></p>
+
+        <p class="time"><%= simple_time(micropost.created_at) %></p>
+
+        <p class="micropost"><%= link_to micropost.content.truncate(30),"/microposts/#{micropost.id}", :class => "micropost" %></p>
+
+        <span class="comment"><%= "コメント(#{micropost.comments.count})"%></span>
+
+        <% if micropost.user == current_user %>
+          <%= link_to "削除", micropost_path(micropost.id), method: :delete,
+                   data: { confirm: "本当に削除しますか?" } %>
+        <% end %>
+        </div>
+        <hr />
+      </div>
+    <% end %>
+  </div>
+
+
+  <div class="comments-box">
+    <% @comments.each do |comment| %>
+      <div class="block">
+        <div class="form-range">
+          <%= link_to comment.user do %>
+            <%= image_tag comment.user.image_name.url, :class => "image" %>
+          <% end %>
+        </div>
+        <div class="form-range-2">
+        <p class="name"><%= link_to "#{comment.user.name}".truncate(15), comment.user, :class => "name"%></p>
+
+        <p class="time"><%= simple_time(comment.created_at) %></p>
+
+        <p class="micropost"><%= comment.body.truncate(30)%></p>
+
+        <% if comment.user == current_user %>
+          <%= link_to "削除", comment_path(comment.id), method: :delete,
+                   data: { confirm: "本当に削除しますか?" } %>
+        <% end %>
+        </div>
+        <hr />
+      </div>
+    <% end %>
+  </div>
+
+
+  <div class="likes-box">
+    <% @likes.each do |like|%>
+    <% comment = Comment.find_by(id: like.comment_id)%>
+      <div class="block">
+        <div class="form-range">
+          <%= link_to comment.user do %>
+            <%= image_tag comment.user.image_name.url, :class => "image" %>
+          <% end %>
+        </div>
+        <div class="form-range-2">
+        <p class="name"><%= link_to "#{comment.user.name}".truncate(15), comment.user, :class => "name"%></p>
+
+        <p class="time"><%= simple_time(comment.created_at) %></p>
+
+        <p class="micropost"><%= comment.body.truncate(30)%></p>
+
+        <% if comment.user == current_user %>
+          <%= link_to "削除", comment_path(comment.id), method: :delete,
+                   data: { confirm: "本当に削除しますか?" } %>
+        <% end %>
+        </div>
+        <hr />
+      </div>
+    <% end %>
+  </div>
+
+  <script>
+    $(function() {
+      $('.themes-box').show();
+      $('.themes').css('border-bottom', 'solid black');
+      $('.comments-box').hide();
+      $('.comments').css('border-bottom', '');
+      $('.likes-box').hide();
+      $('.likes').css('border-bottom', '');
+      // 「#hide-text」要素に対するclickイベントを作成してください
+      $('.themes').click(function() {
+        $('.likes-box').hide();
+        $('.comments-box').hide();
+        $('.themes-box').show();
+        $('.themes').css('border-bottom', 'solid black');
+        $('.comments').css('border-bottom', '');
+        $('.likes').css('border-bottom', '');
+      });
+      $('.comments').click(function() {
+        $('.likes-box').hide();
+        $('.themes-box').hide();
+        $('.comments-box').show();
+        $('.comments').css('border-bottom', 'solid black');
+        $('.themes').css('border-bottom', '');
+        $('.likes').css('border-bottom', '');
+      });
+      $('.likes').click(function() {
+        $('.comments-box').hide();
+        $('.themes-box').hide();
+        $('.likes-box').show();
+        $('.likes').css('border-bottom', 'solid black');
+        $('.themes').css('border-bottom', '');
+        $('.comments').css('border-bottom', '');
+      });
+    });
+  </script>

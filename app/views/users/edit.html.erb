@@ -1,23 +1,29 @@
-<%= form_for(@user) do |f| %>
-  <%= render 'shared/error_messages' %>
+<h1 class="top">ユーザー編集ページ</h1>
 
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
+<div class="edit" style="text-align:center;">
+  <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %>
+    <%= f.label :name, "ユーザー名" %>
+    <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :introduction %>
-  <%= f.text_area :introduction, class: 'form-control' %>
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.file_field :image_name %>
-  <!-- <%= f.check_box :remove_image_name, label: 'プロフィール画像を削除' %> -->
+    <%= f.label :introduction, "プロフィール" %>
+    <%= f.text_area :introduction, class: 'form-control' %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
+    <p>プロフィール画像</p>
+    <%= f.file_field :image_name, class: 'image-edit' %>
 
-  <%= f.label :password_confirmation, "Confirmation" %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password, class: 'form-control' %>
 
-  <%= f.submit "Save changes", class: "btn btn-primary" %>
-<% end %>
+    <%= f.label :password_confirmation, "パスワードの確認" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+    <div class="submit">
+      <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

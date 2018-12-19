@@ -4,16 +4,28 @@
 
 //共通
 
+a{
+  text-decoration: none;
+}
+
 p{
   margin: 0;
 }
 
 ul{
   margin: 0;
+  padding: 0;
 }
 
 body{
   background-color: #FFFFE0;
+}
+
+.top{
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 20px;
 }
 
 .image{
@@ -32,6 +44,18 @@ hr:last-child{
     display:none;
 }
 
+.fa-pink{
+  color: red;
+}
+
+.fa-white{
+  color: white;
+  text-shadow: black 1px 1px 0, black -1px -1px 0,/*右下、左上*/
+        black -1px 1px 0, black 1px -1px 0,/*右上、左下*/
+        black 0px 1px 0, black  0-1px 0,/*右、左*/
+        black -1px 0 0, black 1px 0 0;/*上、下*/
+// 下
+}
 // 画面固定
 
 #header{
@@ -163,18 +187,21 @@ hr:last-child{
    width: 950px;
    background-color: white;
    border-radius: 8px;
-   border: solid 1px #FFEFD5;
+   box-shadow: 1px 0px 5px grey;
    margin: 0 auto;
  }
 
  .new-rank{
-   height: 15%;
-   width: 100%;
+   height: 13%;
+   width: 15%;
+   margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
     li{
       float: left;
       margin: 20px 15px 0 5px;
       list-style: none;
-      font-size: 20px;
+      font-size: 22px;
     }
   }
 
@@ -192,7 +219,9 @@ hr:last-child{
     display: none;
   }
   .number{
-    padding: 20px 0 20px 45px;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 15px;
   }
 
   .block{
@@ -233,23 +262,18 @@ hr:last-child{
 
   .comment{
     float: right;
-    margin-right: 20px;
+    margin-right: 15px;
+    color: black;
   }
 
 // 新着
-.top{
-  text-align: center;
-  font-size: 25px;
-  font-weight: bold;
-  padding: 20px;
-}
 
 .continer{
   height: auto;
   width: 60%;
   background-color: white;
   border-radius: 8px;
-  border: solid 1px #FFEFD5;
+  box-shadow: 1px 0px 5px grey;
   margin: 0 auto;
 }
 
@@ -312,6 +336,65 @@ hr:last-child{
    margin: 0 auto;
  }
 
+ // 投稿詳細
+ .detail-box{
+   height: 180px;
+   width: 90%;
+   margin: 0 auto;
+ }
+
+ .detail{
+   height: 100px;
+   width: 60%;
+   background-color: white;
+   border-radius: 8px;
+   margin: 0 auto;
+   box-shadow: 1px 0px 5px grey;
+ }
+
+ .comment-form{
+   height: 210px;
+   width: 40%;
+   background-color: white;
+   border-radius: 8px;
+   box-shadow: 1px 0px 5px grey;
+   padding: 10px;
+   margin: 20px auto;
+ }
+
+ .comment-input{
+   height: 100px;
+   width: 400px;
+   background-color: blue;
+   margin: 10px auto;
+   text-align: center;
+ }
+
+ .comment-form-field{
+   text-align: center;
+   height: 100%;
+   width: 100%;
+ }
+
+ .comment-post{
+   height: 30px;
+   width:300px;
+   background-color: red;
+   margin: 35px auto;
+ }
+
+ .comment_index{
+   width: 60%;
+   margin: 40px auto;
+   background-color: white;
+   border-radius: 8px;
+   box-shadow: 1px 0px 5px grey;
+   h3{
+     text-align: center;
+     padding: 10px;
+   }
+ }
+
  //マイページ
 .user-image{
   height: 150px;
@@ -326,16 +409,18 @@ hr:last-child{
 }
 
 .user-name{
-  margin: 30px auto;
+  margin: 10px auto;
   text-align: center;
-  font-size: 45px;
+  font-size: 25px;
 }
 
+.cog{
+  color: grey;
+}
 
 .follow{
   height: 50px;
   width: 130px;
-  background-color: skyblue;
   margin: 20px auto;
   text-align: center;
   border-radius: 30px;
@@ -348,10 +433,10 @@ hr:last-child{
 
 .followlist{
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 25px;
   height: 50px;
-  width: 360px;
-  font-size: 25px;
+  width: 310px;
+  font-size: 18px;
   border-right: 3px solid #aaa;
   border-left: 3px solid #aaa;
   line-height: 50px;
@@ -359,4 +444,76 @@ hr:last-child{
 
 .follower{
   float: right;
+}
+
+.option{
+  color: black;
+  font-size: 15px;
+  li{
+    margin-left: 80px;
+  }
+}
+
+.introduction-box{
+  height: 150px;
+  width: 35%;
+  margin: 0 auto;
+}
+
+.introduction{
+  text-align: center;
+  padding-top: 30px;
+  font-size: 15px;
+}
+
+.user-set{
+  width: 60%;
+  background-color: white;
+  margin: 0 auto;
+  box-shadow: 1px 0px 5px grey;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.user-set-box{
+  height: 70px;
+  padding: 20px;
+  font-size: 20px;
+  li{
+    cursor : pointer;
+  }
+}
+
+.user-set-list{
+  height: 30px;
+  line-height: 30px;
+  width: 45%;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.micropost-box{
+  width: 100%;
+}
+
+// 編集ページ
+.edit{
+  height: 600px;
+  width: 30%;
+  margin: 0 auto;
+  padding: 20px 0;
+  background-color: white;
+  box-shadow: 1px 0px 5px grey;
+  border-radius: 8px;
+}
+
+.image-edit{
+  margin: 10px auto 15px auto;
+  text-align: center;
+}
+
+.edit p{
+  font-weight: bold;
 }

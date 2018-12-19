@@ -1,38 +1,71 @@
-<h1>投稿詳細ページ</h1>
-<h3><%= @micropost.user.name %></h3>
-<h3><%= @micropost.content %></h3>
-
+<h1 class="top">投稿詳細ページ</h1>
+  <div class="detail">
+    <div class="form-range">
+      <%= link_to @micropost.user do %>
+      <%= image_tag @micropost.user.image_name.url, :class => "image" %>
+    <% end %>
+    </div>
+  <div class="form-range-2">
+    <p class="name"><%= link_to "#{@micropost.user.name}".truncate(15), @micropost.user, :class => "name"%></p>
+    <p class="time"><%= simple_time(@micropost.created_at) %></p>
+    <p class="micropost"><%= link_to @micropost.content.truncate(30),"/microposts/#{@micropost.id}", :class => "micropost" %></p>
+    <span class="comment"><%= link_to "コメント(#{@micropost.comments.count})","/microposts/#{@micropost.id}"%></span>
+    <% if @micropost.user == current_user %>
+      <%= link_to "削除", micropost_path(@micropost.id), method: :delete,
+           data: { confirm: "本当に削除しますか?" } %>
+    <% end %>
+  </div>
+  <hr />
+  </div>
 <% if logged_in? %>
   <div class="comment-form">
     <%= form_for([@micropost , @comment]) do |f| %>
-      <div class="field">
-        <%= f.text_area :body, placeholder: "Send comment..." %>
-      </div>
+    <div class="comment-input">
+      <%= f.text_area :body, placeholder: "コメントを入力", class: "comment-form-field" %>
+      <span class="picture"><%= f.file_field :picture %></span>
+    </div>
+    <div class="comment-post">
+
       <%= f.submit "Post", class: "btn btn-primary" %>
-      <span class="picture">
-        <!-- <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %> -->
-      <%= f.file_field :picture %>
-      </span>
+    </div>
     <% end %>
   <% end %>
-
-  <!-- <script type="text/javascript">
-    $('#micropost_picture').bind('change', function() {
-      var size_in_megabytes = this.files[0].size/500/500;
-      if (size_in_megabytes > 5) {
-        alert('Maximum file size is 5MB. Please choose a smaller file.');
-      }
-    });
-  </script> -->
   </div>
 
 <div class="comment_index">
   <h3>コメント一覧</h3>
   <% @micropost.comments.each do |comment| %>
-    <p><%= link_to "#{comment.user.name}" , comment.user %>: <%= comment.body %>
-    <%= image_tag comment.picture.url, size: "150x150" if comment.picture? %>
-    <span class= "batu"><%= link_to "削除" , [@micropost,comment] , method: :delete if current_user?(comment.user) %></span></p>
+  <div class="block">
+    <div class="form-range">
+      <%= link_to comment.user do %>
+        <%= image_tag comment.user.image_name.url, :class => "image" %>
+      <% end %>
+    </div>
+    <div class="form-range-2">
+    <p class="name"><%= link_to "#{comment.user.name}".truncate(15), comment.user, :class => "name"%></p>
 
-    <hr/>
-  <% end %>
+    <p class="time"><%= simple_time(comment.created_at) %></p>
+
+    <p class="micropost"><%= comment.body.truncate(30)%></p>
+
+    <% if comment.find_like_by(current_user) %>
+      <%= link_to comment_like_path(comment, comment.find_like_by(current_user)),
+        method: :delete, remote: true do %>
+        <%= fa_icon 'heart', class: "fa-pink" %>
+      <% end %>
+    <% else %>
+      <%= link_to comment_likes_path(comment), method: :post, remote: true do %>
+        <%= fa_icon 'heart', class: "fa-white" %>
+      <% end %>
+    <% end %>
+    <%= comment.likes.count %>
+
+    <% if comment.user == current_user %>
+      <%= link_to "削除", comment_path(comment.id), method: :delete,
+               data: { confirm: "本当に削除しますか?" } %>
+    <% end %>
+    </div>
+    <hr />
+  </div>
+<% end %>
 </div>

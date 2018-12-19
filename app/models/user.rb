@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
   has_many :comments
+  has_many :likes, dependent: :destroy
   mount_uploader :image_name, ImageUploader
   acts_as_follower
   acts_as_followable
@@ -12,7 +13,7 @@ class User < ApplicationRecord
               format: { with: VALID_EMAIL_REGEX },
               uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :introduction, length: { maximum: 100 }
+  validates :introduction, length: { maximum: 130 }
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   # 渡された文字列のハッシュ値を返す
