@@ -110,6 +110,18 @@
 
         <p class="micropost"><%= comment.body.truncate(30)%></p>
 
+        <% if comment.find_like_by(current_user) %>
+          <%= link_to comment_like_path(comment, comment.find_like_by(current_user)),
+            method: :delete, remote: true do %>
+            <%= fa_icon 'heart', class: "fa-pink" %>
+          <% end %>
+        <% else %>
+          <%= link_to comment_likes_path(comment), method: :post, remote: true do %>
+            <%= fa_icon 'heart', class: "fa-white" %>
+          <% end %>
+        <% end %>
+        <%= comment.likes.count %>
+
         <% if comment.user == current_user %>
           <%= link_to "削除", comment_path(comment.id), method: :delete,
                    data: { confirm: "本当に削除しますか?" } %>
