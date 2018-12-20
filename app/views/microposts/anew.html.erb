@@ -13,11 +13,13 @@
       <p class="name"><%= link_to "#{micropost.user.name}".truncate(15), micropost.user, :class => "name"%></p>
       <p class="time"><%= simple_time(micropost.created_at) %></p>
       <p class="micropost"><%= link_to micropost.content.truncate(30),"/microposts/#{micropost.id}", :class => "micropost" %></p>
-      <span class="comment"><%= link_to "コメント(#{micropost.comments.count})","/microposts/#{micropost.id}", :class => "comment"%></span>      
+      <div class="right">
+      <span class="comment"><%= link_to "コメント(#{micropost.comments.count})","/microposts/#{micropost.id}", :class => "comment"%></span>
       <% if micropost.user == current_user %>
         <%= link_to "削除", micropost_path(micropost.id), method: :delete,
              data: { confirm: "本当に削除しますか?" } %>
       <% end %>
+      </div>
     </div>
     <hr />
    </div>

@@ -9,11 +9,13 @@
     <p class="name"><%= link_to "#{@micropost.user.name}".truncate(15), @micropost.user, :class => "name"%></p>
     <p class="time"><%= simple_time(@micropost.created_at) %></p>
     <p class="micropost"><%= link_to @micropost.content.truncate(30),"/microposts/#{@micropost.id}", :class => "micropost" %></p>
-    <span class="comment"><%= link_to "コメント(#{@micropost.comments.count})","/microposts/#{@micropost.id}"%></span>
-    <% if @micropost.user == current_user %>
-      <%= link_to "削除", micropost_path(@micropost.id), method: :delete,
+    <div class="right">
+      <span class="comment"><%= link_to "コメント(#{@micropost.comments.count})","/microposts/#{@micropost.id}", :class => "comment"%></span>
+      <% if @micropost.user == current_user %>
+        <%= link_to "削除", micropost_path(@micropost.id), method: :delete,
            data: { confirm: "本当に削除しますか?" } %>
-    <% end %>
+      <% end %>
+    </div>
   </div>
   <hr />
   </div>
@@ -34,7 +36,7 @@
 
 <div class="comment_index">
   <h3>コメント一覧</h3>
-  <% @micropost.comments.each do |comment| %>
+  <% @micropost.comments.order(created_at: :desc).each do |comment| %>
   <div class="block">
     <div class="form-range">
       <%= link_to comment.user do %>
@@ -42,30 +44,49 @@
       <% end %>
     </div>
     <div class="form-range-2">
-    <p class="name"><%= link_to "#{comment.user.name}".truncate(15), comment.user, :class => "name"%></p>
-
-    <p class="time"><%= simple_time(comment.created_at) %></p>
-
-    <p class="micropost"><%= comment.body.truncate(30)%></p>
-
-    <% if comment.find_like_by(current_user) %>
-      <%= link_to comment_like_path(comment, comment.find_like_by(current_user)),
-        method: :delete, remote: true do %>
-        <%= fa_icon 'heart', class: "fa-pink" %>
+      <p class="name"><%= link_to "#{comment.user.name}".truncate(15), comment.user, :class => "name"%></p>
+      <p class="time"><%= simple_time(comment.created_at) %></p>
+      <p class="micropost"><%= comment.body.truncate(30)%></p>
+      <% if comment.picture? %>
+        <p class="click-picture"><<画像>></p>
+        <div class="picture-js-box">
+          <p class="exit">閉じる</p>
+          <div class="picture-js">
+            <%= image_tag comment.picture.url%>
+          </div>
+        </div>
       <% end %>
-    <% else %>
-      <%= link_to comment_likes_path(comment), method: :post, remote: true do %>
-        <%= fa_icon 'heart', class: "fa-white" %>
+      <div class="right">
+        <% if comment.find_like_by(current_user) %>
+          <%= link_to comment_like_path(comment, comment.find_like_by(current_user)),
+            method: :delete, remote: true do %>
+          <%= fa_icon 'heart', class: "fa-pink" %>
+          <% end %>
+        <% else %>
+          <%= link_to comment_likes_path(comment), method: :post, remote: true do %>
+          <%= fa_icon 'heart', class: "fa-white" %>
+          <% end %>
+        <% end %>
+      <%= comment.likes.count %>
+      <% if comment.user == current_user %>
+        <%= link_to "削除", comment_path(comment.id), method: :delete,
+                data: { confirm: "本当に削除しますか?" } %>
       <% end %>
-    <% end %>
-    <%= comment.likes.count %>
-
-    <% if comment.user == current_user %>
-      <%= link_to "削除", comment_path(comment.id), method: :delete,
-               data: { confirm: "本当に削除しますか?" } %>
-    <% end %>
+      </div>
     </div>
     <hr />
   </div>
 <% end %>
 </div>
+
+<script>
+  $(function() {
+    $('.picture-js-box').hide();
+    $('.click-picture').click(function() {
+      $('.picture-js-box').show();
+    });
+    $('.exit').click(function() {
+      $('.picture-js-box').hide();
+    });
+  });
+</script>

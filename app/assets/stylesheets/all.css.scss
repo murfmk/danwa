@@ -8,6 +8,10 @@ a{
   text-decoration: none;
 }
 
+a:hover{
+  color: black;
+}
+
 p{
   margin: 0;
 }
@@ -44,6 +48,39 @@ hr:last-child{
     display:none;
 }
 
+.right{
+  float: right;
+}
+
+.click-picture{
+  cursor: pointer;
+  float: left;
+}
+
+.picture-js-box{
+  height: 100vh;
+  width: 100vw;
+  padding: 100px;
+  background-color: rgba(000, 000, 000, 0.4);
+  z-index: 10;
+  position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.picture-js{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exit{
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+}
+
 .fa-pink{
   color: red;
 }
@@ -61,7 +98,10 @@ hr:last-child{
 #header{
   height: 45px;
   width: 100%;
-  background-color:#DEB887
+  background-color:#DEB887;
+  z-index: 99;
+  position: fixed;
+  top: 0;
 }
 
 .logo{
@@ -105,6 +145,9 @@ hr:last-child{
   color: red;
 }
 
+.main{
+  margin-top: 70px;
+}
 
 /* forms */
 #error_explanation {
@@ -241,7 +284,7 @@ hr:last-child{
     float: left;
     width: 88%;
     height: 100%;
-    padding-top: 10px;
+    padding: 10px;
   }
   .name{
     font-size: 18px;
@@ -260,8 +303,6 @@ hr:last-child{
   }
 
   .comment{
-    float: right;
-    margin-right: 15px;
     color: black;
   }
 
@@ -418,20 +459,28 @@ hr:last-child{
 }
 
 .follow{
-  height: 50px;
-  width: 130px;
-  margin: 20px auto;
   text-align: center;
-  border-radius: 30px;
 }
 
 .follow-t{
   color: white;
   line-height: 50px;
+  display: inline-block;
+  height: 50px;
+  width: 130px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: skyblue;
+  border-radius: 30px;
+  text-decoration: none !important;
+}
+
+.follow-t:hover{
+  color: white;
 }
 
 .followlist{
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 0 25px;
   height: 50px;
   width: 310px;
