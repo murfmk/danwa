@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :option, :update, :destroy, :follow, :unfollow]
+  before_action :logged_in_user, only: [:show, :edit, :option, :update, :destroy, :follow, :unfollow]
   before_action :correct_user,   only: [:edit, :update, :destroy]
   def new
     @user = User.new
