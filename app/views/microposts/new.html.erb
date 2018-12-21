@@ -1,10 +1,19 @@
 <h1 class="top">テーマを作る</h1>
 
 <div class="theme">
-<%= form_for(@micropost) do |f| %>
-  <%= f.text_area :content, placeholder: "話したいテーマを入力して下さい", class: 'post-form' %>
-  <div class="submit">
-    <%= f.submit "投稿", class: "btn btn-primary" %>
-  </div>
-<% end %>
+  <%= form_for(@micropost) do |f| %>
+    <% if @micropost.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @micropost.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.text_area :content, placeholder: "話したいテーマを入力して下さい", class: 'post-form' %>
+    <div class="submit">
+      <%= f.submit "投稿", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>

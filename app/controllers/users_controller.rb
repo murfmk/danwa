@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = Micropost.all.order(created_at: :desc)
+    # @microposts = Micropost.all.order(created_at: :desc)
     @comments = @user.comments.order(created_at: :desc)
     @likes = Like.where(user_id: @user.id).order(created_at: :desc)
   end

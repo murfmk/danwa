@@ -22,9 +22,18 @@
 <% if logged_in? %>
   <div class="comment-form">
     <%= form_for([@micropost , @comment]) do |f| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @comment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="comment-input">
       <%= f.text_area :body, placeholder: "コメントを入力", class: "comment-form-field" %>
-      <span class="picture"><%= f.file_field :picture %></span>
+      <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'image-edit' %>
     </div>
     <div class="comment-post">
 
@@ -46,7 +55,8 @@
     <div class="form-range-2">
       <p class="name"><%= link_to "#{comment.user.name}".truncate(15), comment.user, :class => "name"%></p>
       <p class="time"><%= simple_time(comment.created_at) %></p>
-      <p class="micropost"><%= comment.body.truncate(30)%></p>
+      <p class="micropost"><%= comment.body%></p>
+      <%= image_tag comment.picture.url if comment.picture?%>
       <% if comment.picture? %>
         <p class="click-picture"><<画像>></p>
         <div class="picture-js-box">
@@ -78,7 +88,14 @@
   </div>
 <% end %>
 </div>
-
+<script type="text/javascript">
+  $('#comment_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('5MB以上の画像ファイルは送信できません');
+    }
+  });
+</script>
 <script>
   $(function() {
     $('.picture-js-box').hide();

@@ -37,7 +37,7 @@ body{
   width: 50px;
   border-radius: 50%;
   position: absolute;
-  top: 0;
+  top: 90px;
   right: 0;
   bottom: 10px;;
   left: 0;
@@ -129,6 +129,7 @@ hr:last-child{
 }
 
 .message{
+  margin-top: 45px;
   padding: 10px 0;
   text-align: center;
   border-radius: 0 0 2px 2px;
@@ -136,12 +137,12 @@ hr:last-child{
 }
 
 .notice {
-  background: skyblue;
+  background-color: skyblue;
   color: white;
 }
 
 .danger{
-  background: pink;
+  background-color: pink;
   color: red;
 }
 
@@ -152,9 +153,12 @@ hr:last-child{
 /* forms */
 #error_explanation {
   color: red;
+  width: 200px;
+  margin: 0 auto;
   ul {
     color: red;
-    margin: 0 0 30px 0;
+    margin-bottom: 30px;
+    text-align: center;
   }
 }
 
@@ -202,7 +206,7 @@ hr:last-child{
 }
 
 .post-form{
-  height: 60px;
+  height: 100px;
   width: 100%;
   margin: 30px auto 20px auto;
   border-radius: 8px;
@@ -230,7 +234,7 @@ hr:last-child{
    background-color: white;
    border-radius: 8px;
    box-shadow: 1px 0px 5px grey;
-   margin: 0 auto;
+   margin: 0 auto 30px auto;
  }
 
  .new-rank{
@@ -259,7 +263,10 @@ hr:last-child{
     height: 85%;
     width: 100%;
     display: none;
+    background-color: white;
+    border-radius: 8px;
   }
+
   .number{
     padding: 20px 0;
     text-align: center;
@@ -267,17 +274,18 @@ hr:last-child{
   }
 
   .block{
-    height: 100px;
+    height:auto;
+	  overflow:hidden;
     width: 100%;
     border-top: solid 1px black;
     background-color: white;
     border-radius: 0 0 8px 8px;
+    word-wrap: break-word;
   }
 
   .form-range{
     float: left;
     width: 12%;
-    height: 100%;
     position: relative;
   }
   .form-range-2{
@@ -285,6 +293,7 @@ hr:last-child{
     width: 88%;
     height: 100%;
     padding: 10px;
+    margin-left: 100px;
   }
   .name{
     font-size: 18px;
@@ -349,13 +358,12 @@ hr:last-child{
    width: 30%;
    background-color: white;
    margin: 0 auto;
-   padding-top: 30px;
    border-radius:10px;
    border: solid 1px #FFDEAD;
  }
 
  .signupsize{
-   height: 410px;
+   padding: 20px;
  }
 
  //ログイン
@@ -367,7 +375,7 @@ hr:last-child{
  }
 
  .loginsize{
-   height: 300px;
+   padding: 25px;
  }
 
  //テーマを書く
@@ -393,7 +401,6 @@ hr:last-child{
  }
 
  .comment-form{
-   height: 210px;
    width: 40%;
    background-color: white;
    border-radius: 8px;
@@ -403,23 +410,19 @@ hr:last-child{
  }
 
  .comment-input{
-   height: 100px;
-   width: 400px;
-   background-color: blue;
    margin: 10px auto;
    text-align: center;
  }
 
  .comment-form-field{
    text-align: center;
-   height: 100%;
-   width: 100%;
+   height: 110px;
+   width: 80%;
  }
 
  .comment-post{
    height: 30px;
    width:300px;
-   background-color: red;
    margin: 35px auto;
  }
 
@@ -548,7 +551,6 @@ hr:last-child{
 
 // 編集ページ
 .edit{
-  height: 600px;
   width: 30%;
   margin: 0 auto;
   padding: 20px 0;

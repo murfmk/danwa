@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to micropost_path(@micropost)
     else
-      redirect_to micropost_path(@micropost)
+      render :template => "microposts/show"
     end
 
   end

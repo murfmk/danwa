@@ -43,7 +43,7 @@
     </div>
 
   <div class="themes-box">
-    <% @microposts.each do |micropost| %>
+    <% @user.microposts.each do |micropost| %>
       <div class="block">
         <div class="form-range">
           <%= link_to micropost.user do %>

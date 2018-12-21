@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.4.2'
 gem 'bootstrap-sass'
 gem 'carrierwave'
+gem 'mini_magick'
 gem 'bcrypt'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
