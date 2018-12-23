@@ -507,14 +507,13 @@ hr:last-child{
 }
 
 .introduction-box{
-  height: 150px;
   width: 35%;
   margin: 0 auto;
 }
 
 .introduction{
   text-align: center;
-  padding-top: 30px;
+  padding: 20px;
   font-size: 15px;
 }
 
@@ -561,10 +560,17 @@ hr:last-child{
 }
 
 .image-edit{
-  margin: 10px auto 15px auto;
+  margin: 10px auto 5px auto;
   text-align: center;
 }
 
 .edit p{
   font-weight: bold;
+}
+
+.image-delete{
+  font-size: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: grey
 }

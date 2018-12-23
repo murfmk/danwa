@@ -16,6 +16,8 @@
     <p>プロフィール画像</p>
     <%= f.file_field :image_name, class: 'image-edit' %>
 
+    <p class="image-delete"><%= f.check_box :remove_image_name %> プロフィール画像を削除する</p>
+
     <%= f.label :password, "パスワード" %>
     <%= f.password_field :password, class: 'form-control' %>
 
