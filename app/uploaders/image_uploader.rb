@@ -4,12 +4,18 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  if Rails.env.production? # 本番でdropbox, 開発環境でローカルストレージ
+    storage :dropbox
+  else
+    storage :file
+  end
   # storage :fog
 
   def default_url
     "default_user.jpg"
   end
+
+
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
