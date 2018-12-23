@@ -81,7 +81,7 @@
 
         <p class="time"><%= simple_time(comment.created_at) %></p>
 
-        <p class="micropost"><%= comment.body.truncate(30)%></p>
+        <p class="micropost"><%= link_to comment.body.truncate(30),"/microposts/#{comment.micropost_id}", :class => "micropost"%></p>
         <% if comment.picture? %>
           <p class="click-picture"><<画像>></p>
           <div class="picture-js-box">

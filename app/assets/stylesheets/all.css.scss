@@ -105,17 +105,18 @@ hr:last-child{
 }
 
 .logo{
-  float: left;
+  float: right;
   text-decoration: none;
   font-size: 27px;
   line-height: 45px;
-  padding-left: 150px;
+  padding-right: 50px;
   color: black;
+  float: left;
+  margin-left: 130px;
 }
 
 .header-list{
   height: 100%;
-  width: 40%;
   float: right;
   margin-right: 150px;
 }
@@ -217,7 +218,7 @@ hr:last-child{
 .about{
   margin: 50px auto 0 auto;
   height: 150px;
-  width: 1100px;
+  width: 100%;
    h1{
      text-align: center;
      font-size: 25px;
@@ -230,7 +231,7 @@ hr:last-child{
  }
 
  .new-rank-box{
-   width: 950px;
+   width: 60%;
    background-color: white;
    border-radius: 8px;
    box-shadow: 1px 0px 5px grey;
@@ -239,7 +240,7 @@ hr:last-child{
 
  .new-rank{
    height: 13%;
-   width: 15%;
+   width: 130px;
    margin: 0 auto;
    display: flex;
    justify-content: space-between;

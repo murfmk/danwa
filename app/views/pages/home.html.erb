@@ -11,7 +11,7 @@
 </ul>
 
 <div class="new-rank-which newlist">
-  <p class="number">新着3件</p>
+  <p class="number">新着3件まで表示</p>
   <% @microposts_new.first(3).each do |micropost| %>
     <div class="block">
       <div class="form-range">
@@ -36,7 +36,7 @@
   <% end %>
 </div>
 <div class="new-rank-which ranklist">
-  <p class="number">ランキング上位3件</p>
+  <p class="number">ランキング上位3件まで</p>
   <% @microposts_rank.first(3).each do |micropost| %>
   <div class="block">
     <div class="form-range">
