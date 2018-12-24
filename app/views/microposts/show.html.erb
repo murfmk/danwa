@@ -36,7 +36,6 @@
       <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'image-edit' %>
     </div>
     <div class="comment-post">
-
       <%= f.submit "Post", class: "btn btn-primary" %>
     </div>
     <% end %>
@@ -56,15 +55,10 @@
       <p class="name"><%= link_to "#{comment.user.name}".truncate(15), comment.user, :class => "name"%></p>
       <p class="time"><%= simple_time(comment.created_at) %></p>
       <p class="micropost"><%= comment.body%></p>
-      <%= image_tag comment.picture.url if comment.picture?%>
       <% if comment.picture? %>
-        <p class="click-picture"><<画像>></p>
-        <div class="picture-js-box">
-          <p class="exit">閉じる</p>
-          <div class="picture-js">
-            <%= image_tag comment.picture.url%>
-          </div>
-        </div>
+        <%= link_to comment.picture.url, target: "_blank",:rel => "lightbox" do %>
+          <%= image_tag comment.picture.url, :class => "picture-size" %>
+        <% end %>
       <% end %>
       <div class="right">
         <% if comment.find_like_by(current_user) %>
@@ -94,16 +88,5 @@
     if (size_in_megabytes > 5) {
       alert('5MB以上の画像ファイルは送信できません');
     }
-  });
-</script>
-<script>
-  $(function() {
-    $('.picture-js-box').hide();
-    $('.click-picture').click(function() {
-      $('.picture-js-box').show();
-    });
-    $('.exit').click(function() {
-      $('.picture-js-box').hide();
-    });
   });
 </script>

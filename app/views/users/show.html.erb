@@ -1,5 +1,7 @@
 <div class="user-image">
-  <%= image_tag @user.image_name.url, :class => "user-image-position" %>
+  <%= link_to @user.image_name.url, target: "_blank",:rel => "lightbox" do %>
+    <%= image_tag @user.image_name.url, :class => "user-image-position" %>
+  <% end %>
 </div>
   <p class="user-name">
     <%= @user.name %>
@@ -81,7 +83,8 @@
 
         <p class="time"><%= simple_time(comment.created_at) %></p>
 
-        <p class="micropost"><%= link_to comment.body.truncate(30),"/microposts/#{comment.micropost_id}", :class => "micropost"%></p>
+        <p class="micropost"><%= link_to comment.body,"/microposts/#{comment.micropost_id}", :class => "micropost"%></p>
+        <%= image_tag comment.picture.url if comment.picture?%>
         <% if comment.picture? %>
           <p class="click-picture"><<画像>></p>
           <div class="picture-js-box">

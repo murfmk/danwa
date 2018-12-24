@@ -35,6 +35,7 @@ body{
 .image{
   height: 50px;
   width: 50px;
+  object-fit: cover;
   border-radius: 50%;
   position: absolute;
   top: 90px;
@@ -46,10 +47,6 @@ body{
 
 hr:last-child{
     display:none;
-}
-
-.right{
-  float: right;
 }
 
 .click-picture{
@@ -74,6 +71,12 @@ hr:last-child{
   align-items: center;
 }
 
+.picture-size{
+  height: 50px;
+  width: 50px;
+  object-fit: contain;
+}
+
 .exit{
   color: white;
   text-align: center;
@@ -91,7 +94,7 @@ hr:last-child{
         black -1px 1px 0, black 1px -1px 0,/*右上、左下*/
         black 0px 1px 0, black  0-1px 0,/*右、左*/
         black -1px 0 0, black 1px 0 0;/*上、下*/
-// 下
+
 }
 // 画面固定
 
@@ -295,7 +298,15 @@ hr:last-child{
     height: 100%;
     padding: 10px;
     margin-left: 100px;
+    position: relative;
   }
+
+  .right{
+    position: absolute;
+	  right: 0;
+	  bottom: 0;
+  }
+
   .name{
     font-size: 18px;
     float: left;
@@ -450,6 +461,7 @@ hr:last-child{
   border-radius: 50%;
   height: 100%;
   width: 100%;
+  object-fit: cover;
 }
 
 .user-name{
